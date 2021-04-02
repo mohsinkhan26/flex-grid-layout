@@ -17,7 +17,7 @@ namespace MK.Common.Helpers
     {
         // TODO: change this path if you drag and drop the plugin somewhere else, instead of under Assets folder
         public const string DATABASE_PATH_FLEX_GRID_DATA =
-            "Assets/MK Assets/Flex Grid Layout/Asset Data/FlexGrid Data/FlexGrid Data Vertical.asset";
+            "Assets/MK Assets/Flex Grid Layout/Scripts/Asset Data/FlexGrid Data/FlexGrid Data Vertical.asset";
 
 #if UNITY_EDITOR
         public static FlexGridData GetFlexGridData()
