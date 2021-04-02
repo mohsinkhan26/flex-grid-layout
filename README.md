@@ -31,6 +31,7 @@ Flexible grid layout used majorly for tags, and to show selected options
 ### Customizations ###
 FlexGrid Data asset file can be customized according to your need
 ![Flex Grid Data.png](https://github.com/mohsinkhan26/flex-grid-layout/blob/main/Screenshots/Flex%20Grid%20Data.png)
+
 1. TRUE: for Vertical layout (items will be horizontal), FALSE: for Horizontal layout (items will be vertical)
 2. Items will show cross button or not, to delete
 3. Items will show add button or not, to add a new item
