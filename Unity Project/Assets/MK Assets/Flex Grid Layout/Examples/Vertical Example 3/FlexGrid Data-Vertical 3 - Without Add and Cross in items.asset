@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebfbf98f4046473db1bea12e62e9aae, type: 3}
+  m_Name: FlexGrid Data-Vertical 3 - Without Add and Cross in items
+  m_EditorClassIdentifier: 
+  isRowHeightFixed: 1
+  showCross: 0
+  showAdd: 0
+  makeInteractable: 1
+  fixedTextSize: 30
+  flexGridPrefab: {fileID: 3063403908251195684, guid: b0ab48c6a97dc453bbb90d9e853da403, type: 3}
+  flexGridItemPrefab: {fileID: 8171871836275662648, guid: 931c2e4910f2a4c0dad35800465596cc, type: 3}
+  containerAlignment: 4
+  addLastItemAddButton: 1
+  addLastItemAddTagSize: 4
+  flexGridLastItemAdd: {fileID: 6870969218758315562, guid: 08a90452c27b24a65adf2c3bf6b25ec0, type: 3}
+  lastItemAddImage: {fileID: 21300000, guid: 02a4e51b74123324db8b1db398212d20, type: 3}
+  showLastItemText: 1
+  lastItemText: Add

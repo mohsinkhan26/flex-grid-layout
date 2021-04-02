@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8e484f739e11d447b8200e20a44b8664
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - flexGridData: {fileID: 11400000, guid: e9e2255de50564300b002d0037a65f96, type: 2}
+  - crossButton: {instanceID: 0}
+  - addButton: {instanceID: 0}
+  - text: {instanceID: 0}
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: bc4399f29bda14c248011e5393287541, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
