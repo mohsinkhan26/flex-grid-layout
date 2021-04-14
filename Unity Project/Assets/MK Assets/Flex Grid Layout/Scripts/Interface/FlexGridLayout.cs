@@ -189,6 +189,7 @@ namespace MK.FlexGridLayout
             {
                 // destroy as it will also be created with the row/column
                 Destroy(lastItem);
+                lastItem = null;
             }
 
             if (flexGrids == null) flexGrids = new List<FlexGrid>();
@@ -226,7 +227,7 @@ namespace MK.FlexGridLayout
                 bool flag = (flexGrids == null || flexGrids.Count == 0)
                     ? false
                     : flexGrids.LastOrDefault().HasSpace(flexGridData, flexGridData.lastItemText);
-                lastItem.SetActive(true); // make the GameObject active before setting its parent
+                lastItem.SetActive(flexGridData.addLastItemAddButton); // make the GameObject active before setting its parent
                 if (flag)
                 {
                     // has space in last row/column
