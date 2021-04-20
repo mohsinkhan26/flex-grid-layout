@@ -232,8 +232,7 @@ namespace MK.FlexGridLayout
                 bool flag = (flexGrids == null || flexGrids.Count == 0)
                     ? false
                     : flexGrids.LastOrDefault().HasSpace(flexGridData, flexGridData.lastItemText);
-                lastItem.SetActive(flexGridData
-                    .addLastItemAddButton); // make the GameObject active before setting its parent
+                lastItem.SetActive(flexGridData.addLastItemAddButton); // make the GameObject active before setting its parent
                 if (flag)
                 {
                     // has space in last row/column
