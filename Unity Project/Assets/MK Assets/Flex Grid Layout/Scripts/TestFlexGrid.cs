@@ -19,7 +19,8 @@ namespace MK.FlexGridLayout.Example
         void AddTestEntry()
         {
             if (flexGridLayout != null)
-                flexGridLayout.AddEntry(Random.Range(1, 99999999).ToString(), false, AddTestEntry);
+                flexGridLayout.AddEntry(Random.Range(1, 99999999).ToString(), false, AddTestEntry,
+                    (_textToRemove) => { });
         }
 
         [ContextMenu("Add 8 Test Entry")]
@@ -28,7 +29,8 @@ namespace MK.FlexGridLayout.Example
             if (flexGridLayout != null)
             {
                 for (int i = 0; i < 8; ++i)
-                    flexGridLayout.AddEntry(Random.Range(1, 99999999).ToString(), false, AddTestEntry);
+                    flexGridLayout.AddEntry(Random.Range(1, 99999999).ToString(), false, AddTestEntry,
+                        (_textToRemove) => { });
             }
         }
     }

@@ -77,7 +77,7 @@ namespace MK.FlexGridLayout.Core
 
         public FlexGridItem AddItem(FlexGridData _flexGridData, FlexGridLayout _parent, string _text,
             bool _isSelected,
-            Action _onCross, Action _onAdd, Action<bool, string> _onToggleValueChanged)
+            Action<string> _onCross, Action _onAdd, Action<bool, string> _onToggleValueChanged)
         {
             Initialize();
             flexGridData = _flexGridData;

@@ -1,14 +1,16 @@
-﻿/* 
+/* 
  * Author : Mohsin Khan
  * Portfolio : http://mohsinkhan26.github.io/ 
  * LinkedIn : http://pk.linkedin.com/in/mohsinkhan26/
  * Github : https://github.com/mohsinkhan26/
 */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 using MK.Common;
 using MK.FlexGridLayout.Core;
@@ -23,6 +25,7 @@ namespace MK.FlexGridLayout
         [SerializeField] private Transform gridsContainer;
         [SerializeField] private HorizontalOrVerticalLayoutGroup horizontalOrVerticalLayoutGroup;
         private List<FlexGrid> flexGrids;
+        [SerializeField] private UnityEvent<string> onRemoveItem;
         [HideInInspector] public List<string> tags;
         [HideInInspector] public List<string> selectedTags;
 
@@ -51,7 +54,7 @@ namespace MK.FlexGridLayout
             horizontalOrVerticalLayoutGroup.childAlignment = flexGridData.containerAlignment;
         }
 
-        public void AddEntry(string _text, bool _isSelected, Action _onAdd, Action _onCross = null)
+        public void AddEntry(string _text, bool _isSelected, Action _onAdd, Action<string> _onCross)
         {
             Initialize();
 
@@ -66,10 +69,10 @@ namespace MK.FlexGridLayout
                     if (flexGrids[i].HasSpace(flexGridData, _text))
                     {
                         notAddedYet = false;
-                        flexGrids[i].AddItem(flexGridData, this, _text, _isSelected, () =>
+                        flexGrids[i].AddItem(flexGridData, this, _text, _isSelected, (_textToRemove) =>
                         {
                             tags.Remove(_text);
-                            _onCross?.Invoke();
+                            _onCross?.Invoke(_textToRemove);
                             AddLastItem(_onAdd);
                         }, _onAdd, OnToggleValueChanged);
                         tags.Add(_text);
@@ -92,13 +95,13 @@ namespace MK.FlexGridLayout
             AddLastItem(_onAdd);
         }
 
-        void AddNewGrid(string _text, bool _isSelected, Action _onCross, Action _onAdd)
+        void AddNewGrid(string _text, bool _isSelected, Action<string> _onCross, Action _onAdd)
         {
             FlexGrid flexGrid = InstantiateNewGrid();
-            flexGrid.AddItem(flexGridData, this, _text, _isSelected, () =>
+            flexGrid.AddItem(flexGridData, this, _text, _isSelected, (_textToRemove) =>
             {
                 tags.Remove(_text);
-                _onCross?.Invoke();
+                _onCross?.Invoke(_textToRemove);
             }, _onAdd, OnToggleValueChanged);
             tags.Add(_text);
         }
@@ -131,6 +134,8 @@ namespace MK.FlexGridLayout
             {
                 selectedTags.Remove(_text);
             }
+
+            onRemoveItem?.Invoke(_text);
 
             OnRemoveAdjustLayout(_flexGrid);
         }
@@ -189,6 +194,7 @@ namespace MK.FlexGridLayout
             {
                 // destroy as it will also be created with the row/column
                 Destroy(lastItem);
+                lastItem = null;
             }
 
             if (flexGrids == null) flexGrids = new List<FlexGrid>();
@@ -226,7 +232,8 @@ namespace MK.FlexGridLayout
                 bool flag = (flexGrids == null || flexGrids.Count == 0)
                     ? false
                     : flexGrids.LastOrDefault().HasSpace(flexGridData, flexGridData.lastItemText);
-                lastItem.SetActive(true); // make the GameObject active before setting its parent
+                lastItem.SetActive(flexGridData
+                    .addLastItemAddButton); // make the GameObject active before setting its parent
                 if (flag)
                 {
                     // has space in last row/column
@@ -272,14 +279,16 @@ namespace MK.FlexGridLayout
         [ContextMenu("Add Test Entry")]
         void AddTestEntry()
         {
-            AddEntry(Random.Range(1, 99999999).ToString(), false, AddTestEntry);
+            AddEntry(Random.Range(1, 99999999).ToString(), false, AddTestEntry,
+                (_textToRemove) => { });
         }
 
         [ContextMenu("Add 8 Test Entry")]
         void Add8TestEntry()
         {
             for (int i = 0; i < 8; ++i)
-                AddEntry(Random.Range(1, 99999999).ToString(), false, AddTestEntry);
+                AddEntry(Random.Range(1, 99999999).ToString(), false, AddTestEntry,
+                    (_textToRemove) => { });
         }
 
         #endregion Inspector Sub Menu

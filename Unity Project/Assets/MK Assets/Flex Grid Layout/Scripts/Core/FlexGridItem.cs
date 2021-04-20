@@ -22,7 +22,7 @@ namespace MK.FlexGridLayout.Core
         [SerializeField] private LayoutElement[] layoutElement;
 
         private FlexGrid parent;
-        private Action onCross;
+        private Action<string> onCross;
         private Action onAdd;
         private Action<bool, string> onToggleValueChanged;
 
@@ -42,7 +42,7 @@ namespace MK.FlexGridLayout.Core
         }
 
         public void SetText(FlexGridData _flexGridData, FlexGrid _parent, string _text, bool _isSelected,
-            Action _onCross, Action _onAdd, Action<bool, string> _onToggleValueChanged)
+            Action<string> _onCross, Action _onAdd, Action<bool, string> _onToggleValueChanged)
         {
             flexGridData = _flexGridData;
             parent = _parent;
@@ -80,7 +80,7 @@ namespace MK.FlexGridLayout.Core
 
         public void CrossClicked()
         {
-            onCross?.Invoke();
+            onCross?.Invoke(Text);
             parent.RemoveItem(this);
         }
 
